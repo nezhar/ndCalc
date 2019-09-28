@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Exposure
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="exposure-card">
+    <ion-card-header>
+      <ion-card-subtitle><h4>Final Exposure</h4></ion-card-subtitle>
+      <ion-card-title><h1>{{ finalExposure }}</h1></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <p>Based on <b>{{ exposureDisplay }}</b> exposure <br> and <b>{{ stopsDisplay }}</b> filter</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div [formGroup]=pageForm>
+    <ion-item>
+      <ion-label>Base Exposure</ion-label>
+      <ion-select formControlName="exposure" ok-text="Okay" cancel-text="Dismiss">
+        <ion-select-option [value]="exposure.value" *ngFor="let exposure of exposureValues">{{ exposure.display }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Stops/ND value</ion-label>
+      <ion-select formControlName="stops" ok-text="Okay" cancel-text="Dismiss">
+        <ion-select-option [value]="stop.value" *ngFor="let stop of stopValues">{{ stop.display }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+</ion-content>
