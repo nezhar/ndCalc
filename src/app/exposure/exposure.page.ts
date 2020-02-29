@@ -11,26 +11,62 @@ export class ExposurePage implements OnInit, OnDestroy {
 
   pageForm: FormGroup;
 
-  exposureValues: {value: number, display: string}[] = [
-    {value: 0.000125, display: '1/8000s'},
-    {value: 0.00025, display: '1/4000s'},
-    {value: 0.0005, display: '1/2000s'},
-    {value: 0.001, display: '1/1000s'},
-    {value: 0.002, display: '1/500s'},
-    {value: 0.004, display: '1/250s'},
-    {value: 0.008, display: '1/125s'},
-    {value: 0.01666666666, display: '1/60s'},
-    {value: 0.03333333333, display: '1/30s'},
-    {value: 0.06666666666, display: '1/15s'},
-    {value: 0.125, display: '1/8s'},
-    {value: 0.25, display: '1/4s'},
-    {value: 0.5, display: '1/2s'},
-    {value: 1, display: '1s'},
-    {value: 2, display: '2s'},
-    {value: 4, display: '4s'},
-    {value: 8, display: '8s'},
-    {value: 15, display: '15s'},
-    {value: 30, display: '30s'},
+  exposureValues: {seconds: number, division: number, value?: number, display?: string}[] = [
+    {seconds: 1, division: 8000},
+    {seconds: 1, division: 6400},
+    {seconds: 1, division: 5000},
+    {seconds: 1, division: 4000},
+    {seconds: 1, division: 3200},
+    {seconds: 1, division: 2500},
+    {seconds: 1, division: 2000},
+    {seconds: 1, division: 1600},
+    {seconds: 1, division: 1250},
+    {seconds: 1, division: 1000},
+    {seconds: 1, division: 800},
+    {seconds: 1, division: 640},
+    {seconds: 1, division: 500},
+    {seconds: 1, division: 400},
+    {seconds: 1, division: 320},
+    {seconds: 1, division: 250},
+    {seconds: 1, division: 200},
+    {seconds: 1, division: 160},
+    {seconds: 1, division: 125},
+    {seconds: 1, division: 100},
+    {seconds: 1, division: 80},
+    {seconds: 1, division: 60},
+    {seconds: 1, division: 50},
+    {seconds: 1, division: 40},
+    {seconds: 1, division: 30},
+    {seconds: 1, division: 25},
+    {seconds: 1, division: 20},
+    {seconds: 1, division: 15},
+    {seconds: 1, division: 13},
+    {seconds: 1, division: 10},
+    {seconds: 1, division: 8},
+    {seconds: 1, division: 6},
+    {seconds: 1, division: 5},
+    {seconds: 1, division: 4},
+    {seconds: 0.3, division: 1},
+    {seconds: 0.4, division: 1},
+    {seconds: 0.5, division: 1},
+    {seconds: 0.6, division: 1},
+    {seconds: 0.8, division: 1},
+    {seconds: 1, division: 1},
+    {seconds: 1.3, division: 1},
+    {seconds: 1.6, division: 1},
+    {seconds: 2, division: 1},
+    {seconds: 2.5, division: 1},
+    {seconds: 3.2, division: 1},
+    {seconds: 4, division: 1},
+    {seconds: 5, division: 1},
+    {seconds: 6, division: 1},
+    {seconds: 8, division: 1},
+    {seconds: 10, division: 1},
+    {seconds: 13, division: 1},
+    {seconds: 15, division: 1},
+    {seconds: 20, division: 1},
+    {seconds: 25, division: 1},
+    {seconds: 30, division: 1},
   ];
   stopValues: {value: number, display: string}[] = [
     {value: 0, display: 'no stops / ND 1'},
@@ -58,6 +94,17 @@ export class ExposurePage implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit() {
+
+    for (const exposureValue of this.exposureValues) {
+      exposureValue.value = exposureValue.seconds / exposureValue.division;
+
+      if (exposureValue.division > 1) {
+        exposureValue.display = `${exposureValue.seconds}/${exposureValue.division}s`;
+      } else {
+        exposureValue.display = `${exposureValue.seconds}s`;
+      }
+    }
+
     this.pageForm = new FormGroup({
       exposure: new FormControl(this.exposureValues[0].value),
       stops: new FormControl(this.stopValues[0].value),
@@ -74,7 +121,7 @@ export class ExposurePage implements OnInit, OnDestroy {
 
   }
 
-  getDisplayValue(list: {value: any, display: string}[], value: any) {
+  getDisplayValue(list: {value?: any, display?: string}[], value: any) {
       return list.find(element => element.value === value).display;
   }
 
