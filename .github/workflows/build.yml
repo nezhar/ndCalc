@@ -43,9 +43,13 @@ jobs:
       
       - name: Build Android Release APK
         run: ionic cordova build android --release --prod
-    
-      - name: Upload release APK
+
+      - name: Generate the Android App Bundle
+        working-directory: ./platforms/android/
+        run: ./gradlew bundle
+
+      - name: Upload release bundle
         uses: actions/upload-artifact@v1
         with:
           name: app-release
-          path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: platforms/android/app/build/outputs/bundle/release/app.aab
