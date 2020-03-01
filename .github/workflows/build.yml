@@ -32,11 +32,20 @@ jobs:
       - name: Add Android platform
         run: ionic cordova platform add android@latest
 
-      - name: Build Android APK
+      - name: Build Android Dev APK
         run: ionic cordova build android
 
-      - name: Upload APK
+      - name: Upload dev APK
         uses: actions/upload-artifact@v1
         with:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+      
+      - name: Build Android Release APK
+        run: ionic cordova build android --release --prod
+    
+      - name: Upload release APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release
+          path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
