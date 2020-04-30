@@ -25,7 +25,7 @@
     "@ionic-native/status-bar": "^5.24.0",
     "@ionic/angular": "^4.11.10",
     "cordova-android": "8.1.0",
-    "cordova-res": "^0.12.2",
+    "cordova-res": "^0.14.0",
     "core-js": "^3.6.5",
     "rxjs": "~6.5.5",
     "tslib": "^1.11.1",
