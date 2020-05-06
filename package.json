@@ -28,7 +28,7 @@
     "cordova-res": "^0.14.0",
     "core-js": "^3.6.5",
     "rxjs": "~6.5.5",
-    "tslib": "^1.11.1",
+    "tslib": "^1.11.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
