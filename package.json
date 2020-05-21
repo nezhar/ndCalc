@@ -39,7 +39,7 @@
     "@angular/cli": "~8.1.2",
     "@angular/compiler": "~8.1.2",
     "@angular/compiler-cli": "~8.1.2",
-    "@angular/language-service": "~9.1.7",
+    "@angular/language-service": "~9.1.9",
     "@ionic/angular-toolkit": "~2.2.0",
     "@types/jasmine": "~3.5.10",
     "@types/jasminewd2": "~2.0.8",
